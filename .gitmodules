@@ -1,0 +1,3 @@
+[submodule "extlib/ribbon"]
+	path = extlib/ribbon
+	url = git@github.com:lorenzhs/BuRR.git
