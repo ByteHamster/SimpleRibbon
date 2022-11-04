@@ -10,8 +10,8 @@ struct RetrievalConfig : public ribbon::RConfig<coeff_bits, result_bits,
     static constexpr bool kUseMHC = false;
 };
 
-template<size_t bits, size_t coeff_bits>
-SimpleRibbon<bits, coeff_bits>::SimpleRibbon(std::vector<std::pair<uint64_t, uint8_t>> &data) {
+template<size_t bits, size_t coeff_bits, typename result_t>
+SimpleRibbon<bits, coeff_bits, result_t>::SimpleRibbon(std::vector<std::pair<uint64_t, result_t>> &data) {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
 
@@ -23,8 +23,8 @@ SimpleRibbon<bits, coeff_bits>::SimpleRibbon(std::vector<std::pair<uint64_t, uin
     static_cast<RibbonT*>(ribbon)->BackSubst();
 }
 
-template<size_t bits, size_t coeff_bits>
-SimpleRibbon<bits, coeff_bits>::~SimpleRibbon() {
+template<size_t bits, size_t coeff_bits, typename result_t>
+SimpleRibbon<bits, coeff_bits, result_t>::~SimpleRibbon() {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
 
@@ -33,16 +33,16 @@ SimpleRibbon<bits, coeff_bits>::~SimpleRibbon() {
     }
 }
 
-template<size_t bits, size_t coeff_bits>
-uint8_t SimpleRibbon<bits, coeff_bits>::retrieve(uint64_t key) {
+template<size_t bits, size_t coeff_bits, typename result_t>
+result_t SimpleRibbon<bits, coeff_bits, result_t>::retrieve(uint64_t key) {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
 
     return static_cast<RibbonT*>(ribbon)->QueryRetrieval(key);
 }
 
-template<size_t bits, size_t coeff_bits>
-std::size_t SimpleRibbon<bits, coeff_bits>::size() {
+template<size_t bits, size_t coeff_bits, typename result_t>
+std::size_t SimpleRibbon<bits, coeff_bits, result_t>::size() {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
 
@@ -53,7 +53,19 @@ std::size_t SimpleRibbon<bits, coeff_bits>::size() {
 template class SimpleRibbon<1, 32>;
 template class SimpleRibbon<2, 32>;
 template class SimpleRibbon<3, 32>;
+template class SimpleRibbon<4, 32>;
+template class SimpleRibbon<5, 32>;
+template class SimpleRibbon<6, 32>;
+template class SimpleRibbon<7, 32>;
+template class SimpleRibbon<8, 32>;
 
 template class SimpleRibbon<1, 64>;
 template class SimpleRibbon<2, 64>;
 template class SimpleRibbon<3, 64>;
+template class SimpleRibbon<4, 64>;
+template class SimpleRibbon<5, 64>;
+template class SimpleRibbon<6, 64>;
+template class SimpleRibbon<7, 64>;
+template class SimpleRibbon<8, 64>;
+
+template class SimpleRibbon<32, 64, uint32_t>;
