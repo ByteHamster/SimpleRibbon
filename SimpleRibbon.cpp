@@ -58,6 +58,10 @@ template class SimpleRibbon<5, 32>;
 template class SimpleRibbon<6, 32>;
 template class SimpleRibbon<7, 32>;
 template class SimpleRibbon<8, 32>;
+template class SimpleRibbon<9, 32, uint16_t>;
+template class SimpleRibbon<10, 32, uint16_t>;
+template class SimpleRibbon<11, 32, uint16_t>;
+template class SimpleRibbon<12, 32, uint16_t>;
 
 template class SimpleRibbon<1, 64>;
 template class SimpleRibbon<2, 64>;
@@ -67,5 +71,9 @@ template class SimpleRibbon<5, 64>;
 template class SimpleRibbon<6, 64>;
 template class SimpleRibbon<7, 64>;
 template class SimpleRibbon<8, 64>;
+template class SimpleRibbon<9, 64, uint16_t>;
+template class SimpleRibbon<10, 64, uint16_t>;
+template class SimpleRibbon<11, 64, uint16_t>;
+template class SimpleRibbon<12, 64, uint16_t>;
 
 template class SimpleRibbon<32, 64, uint32_t>;
