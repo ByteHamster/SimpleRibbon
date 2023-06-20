@@ -3,7 +3,7 @@
 
 template<size_t coeff_bits, size_t result_bits>
 struct RetrievalConfig : public ribbon::RConfig<coeff_bits, result_bits,
-        /* threshold mode */ (result_bits == 64) ? ribbon::ThreshMode::twobit : ribbon::ThreshMode::onebit,
+        /* threshold mode */ (result_bits >= 64) ? ribbon::ThreshMode::twobit : ribbon::ThreshMode::onebit,
         /* sparse */ false, /* interleaved */ true, /* cls */ false, /* bucket_sh */ 0, /* key type */ uint64_t> {
     static constexpr bool log = false;
     static constexpr bool kIsFilter = false;
@@ -75,5 +75,7 @@ template class SimpleRibbon<9, 64, uint16_t>;
 template class SimpleRibbon<10, 64, uint16_t>;
 template class SimpleRibbon<11, 64, uint16_t>;
 template class SimpleRibbon<12, 64, uint16_t>;
+
+template class SimpleRibbon<1, 128>;
 
 template class SimpleRibbon<32, 64, uint32_t>;
