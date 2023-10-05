@@ -18,7 +18,7 @@ SimpleRibbon<bits, coeff_bits, result_t>::SimpleRibbon(std::vector<std::pair<uin
     using namespace ribbon;
     IMPORT_RIBBON_CONFIG(Config);
 
-    ribbon = new ribbon::ribbon_filter</*depth*/ 2, Config>(data.size(), 0.95, 42);
+    ribbon = new ribbon::ribbon_filter</*depth*/ 2, Config>(data.size(), 0.965, 42);
     static_cast<RibbonT*>(ribbon)->AddRange(data.begin(), data.end());
     static_cast<RibbonT*>(ribbon)->BackSubst();
 }
