@@ -10,7 +10,11 @@ class SimpleRibbon {
         void *ribbon;
     public:
         explicit SimpleRibbon(std::vector<std::pair<uint64_t, result_t>> &data);
+        SimpleRibbon();
+        SimpleRibbon(SimpleRibbon&& obj);
         ~SimpleRibbon();
+        SimpleRibbon &operator=(SimpleRibbon &other) = delete;
+        SimpleRibbon &operator=(SimpleRibbon &&other);
         result_t retrieve(uint64_t key);
-        std::size_t size();
+        std::size_t sizeBytes();
 };

@@ -24,6 +24,17 @@ SimpleRibbon<bits, coeff_bits, result_t>::SimpleRibbon(std::vector<std::pair<uin
 }
 
 template<size_t bits, size_t coeff_bits, typename result_t>
+SimpleRibbon<bits, coeff_bits, result_t>::SimpleRibbon() {
+    ribbon = nullptr;
+}
+
+template<size_t bits, size_t coeff_bits, typename result_t>
+SimpleRibbon<bits, coeff_bits, result_t>::SimpleRibbon (SimpleRibbon&& obj) {
+    ribbon = obj.ribbon;
+    obj.ribbon = nullptr;
+}
+
+template<size_t bits, size_t coeff_bits, typename result_t>
 SimpleRibbon<bits, coeff_bits, result_t>::~SimpleRibbon() {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
@@ -34,18 +45,33 @@ SimpleRibbon<bits, coeff_bits, result_t>::~SimpleRibbon() {
 }
 
 template<size_t bits, size_t coeff_bits, typename result_t>
+SimpleRibbon<bits, coeff_bits, result_t>&
+        SimpleRibbon<bits, coeff_bits, result_t>::operator=(SimpleRibbon<bits, coeff_bits, result_t> &&other) {
+    using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
+    using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
+    if (ribbon != nullptr) {
+        delete static_cast<RibbonT*>(ribbon);
+    }
+    ribbon = other.ribbon;
+    other.ribbon = nullptr;
+    return *this;
+}
+
+template<size_t bits, size_t coeff_bits, typename result_t>
 result_t SimpleRibbon<bits, coeff_bits, result_t>::retrieve(uint64_t key) {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
 
+    assert(ribbon != nullptr);
     return static_cast<RibbonT*>(ribbon)->QueryRetrieval(key);
 }
 
 template<size_t bits, size_t coeff_bits, typename result_t>
-std::size_t SimpleRibbon<bits, coeff_bits, result_t>::size() {
+std::size_t SimpleRibbon<bits, coeff_bits, result_t>::sizeBytes() {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
 
+    assert(ribbon != nullptr);
     assert(static_cast<RibbonT*>(ribbon)->Size() > 0);
     return static_cast<RibbonT*>(ribbon)->Size();
 }
