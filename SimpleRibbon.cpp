@@ -24,6 +24,18 @@ SimpleRibbon<bits, coeff_bits, result_t>::SimpleRibbon(std::vector<std::pair<uin
 }
 
 template<size_t bits, size_t coeff_bits, typename result_t>
+SimpleRibbon<bits, coeff_bits, result_t>::SimpleRibbon(std::istream &is) {
+    using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
+    using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
+
+    using namespace ribbon;
+    IMPORT_RIBBON_CONFIG(Config);
+
+    ribbon = new ribbon::ribbon_filter</*depth*/ 2, Config>();
+    static_cast<RibbonT*>(ribbon)->Deserialize(is);
+}
+
+template<size_t bits, size_t coeff_bits, typename result_t>
 SimpleRibbon<bits, coeff_bits, result_t>::SimpleRibbon() {
     ribbon = nullptr;
 }
@@ -74,6 +86,17 @@ std::size_t SimpleRibbon<bits, coeff_bits, result_t>::sizeBytes() {
     assert(ribbon != nullptr);
     assert(static_cast<RibbonT*>(ribbon)->Size() > 0);
     return static_cast<RibbonT*>(ribbon)->Size();
+}
+
+template<size_t bits, size_t coeff_bits, typename result_t>
+void SimpleRibbon<bits, coeff_bits, result_t>::writeTo(std::ostream &os) {
+    using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
+    using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
+
+    using namespace ribbon;
+    IMPORT_RIBBON_CONFIG(Config);
+
+    static_cast<RibbonT*>(ribbon)->Serialize(os);
 }
 
 template class SimpleRibbon<1, 32>;
