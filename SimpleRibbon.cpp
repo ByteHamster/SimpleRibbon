@@ -70,7 +70,7 @@ SimpleRibbon<bits, coeff_bits, result_t>&
 }
 
 template<size_t bits, size_t coeff_bits, typename result_t>
-result_t SimpleRibbon<bits, coeff_bits, result_t>::retrieve(uint64_t key) {
+result_t SimpleRibbon<bits, coeff_bits, result_t>::retrieve(uint64_t key) const {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
 
@@ -79,7 +79,7 @@ result_t SimpleRibbon<bits, coeff_bits, result_t>::retrieve(uint64_t key) {
 }
 
 template<size_t bits, size_t coeff_bits, typename result_t>
-std::size_t SimpleRibbon<bits, coeff_bits, result_t>::sizeBytes() {
+std::size_t SimpleRibbon<bits, coeff_bits, result_t>::sizeBytes() const {
     using Config = RetrievalConfig<coeff_bits, /*result_bits*/ bits>;
     using RibbonT = ribbon::ribbon_filter</*depth*/ 2, Config>;
 
