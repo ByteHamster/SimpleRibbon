@@ -137,22 +137,22 @@ class MultiRetrievalDataStructure {
         size_t spaceBits(size_t N = 0) {
             if (N != 0) {
                 std::cout<<"Space usage (bits/key) of the retrieval data structures:"<<std::endl;
-                std::cout<<"1-bit: "<<(8.0*retrieval1->size()/N)<<", ";
-                std::cout<<"2-bit: "<<(8.0*retrieval2->size()/N)<<", ";
-                std::cout<<"3-bit: "<<(8.0*retrieval3->size()/N)<<", ";
-                std::cout<<"4-bit: "<<(8.0*retrieval4->size()/N)<<std::endl;
-                std::cout<<"5-bit: "<<(8.0*retrieval5->size()/N)<<", ";
-                std::cout<<"6-bit: "<<(8.0*retrieval6->size()/N)<<", ";
-                std::cout<<"7-bit: "<<(8.0*retrieval7->size()/N)<<", ";
-                std::cout<<"8-bit: "<<(8.0*retrieval8->size()/N)<<", ";
-                std::cout<<"9-bit: "<<(8.0*retrieval9->size()/N)<<", ";
-                std::cout<<"10+-bit: "<<(8.0*retrieval10Plus->size()/N)<<std::endl;
+                std::cout<<"1-bit: "<<(8.0*retrieval1->sizeBytes()/N)<<", ";
+                std::cout<<"2-bit: "<<(8.0*retrieval2->sizeBytes()/N)<<", ";
+                std::cout<<"3-bit: "<<(8.0*retrieval3->sizeBytes()/N)<<", ";
+                std::cout<<"4-bit: "<<(8.0*retrieval4->sizeBytes()/N)<<std::endl;
+                std::cout<<"5-bit: "<<(8.0*retrieval5->sizeBytes()/N)<<", ";
+                std::cout<<"6-bit: "<<(8.0*retrieval6->sizeBytes()/N)<<", ";
+                std::cout<<"7-bit: "<<(8.0*retrieval7->sizeBytes()/N)<<", ";
+                std::cout<<"8-bit: "<<(8.0*retrieval8->sizeBytes()/N)<<", ";
+                std::cout<<"9-bit: "<<(8.0*retrieval9->sizeBytes()/N)<<", ";
+                std::cout<<"10+-bit: "<<(8.0*retrieval10Plus->sizeBytes()/N)<<std::endl;
             }
-            size_t bytes = retrieval1->size() + retrieval2->size() + retrieval3->size()
-                           + retrieval4->size() + retrieval5->size()
-                           + retrieval6->size() + retrieval7->size()
-                           + retrieval8->size() + retrieval9->size()
-                           + retrieval10Plus->size();
+            size_t bytes = retrieval1->sizeBytes() + retrieval2->sizeBytes() + retrieval3->sizeBytes()
+                           + retrieval4->sizeBytes() + retrieval5->sizeBytes()
+                           + retrieval6->sizeBytes() + retrieval7->sizeBytes()
+                           + retrieval8->sizeBytes() + retrieval9->sizeBytes()
+                           + retrieval10Plus->sizeBytes();
             return (bytes + sizeof(*this)) * 8;
         }
 };
