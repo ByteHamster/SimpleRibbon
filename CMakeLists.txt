@@ -24,6 +24,7 @@ add_library(SimpleRibbon SHARED SimpleRibbon.cpp)
 target_compile_features(SimpleRibbon PUBLIC cxx_std_17)
 target_include_directories(SimpleRibbon PRIVATE SYSTEM extlib/ribbon/DySECT)
 target_include_directories(SimpleRibbon PRIVATE SYSTEM extlib/ribbon)
+target_include_directories(SimpleRibbon PRIVATE SYSTEM extlib/xxhash)
 target_include_directories(SimpleRibbon PUBLIC include)
 target_link_libraries(SimpleRibbon PRIVATE ips2ra tlx)
 

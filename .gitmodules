@@ -1,3 +1,6 @@
 [submodule "extlib/ribbon"]
 	path = extlib/ribbon
 	url = https://github.com/lorenzhs/BuRR.git
+[submodule "extlib/xxhash"]
+	path = extlib/xxhash
+	url = https://github.com/rurban/smhasher.git
