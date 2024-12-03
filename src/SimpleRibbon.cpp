@@ -1,4 +1,4 @@
-#include "include/SimpleRibbon.h"
+#include "SimpleRibbon.h"
 #include "ribbon.hpp"
 
 template<size_t coeff_bits, size_t result_bits>
