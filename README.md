@@ -3,7 +3,7 @@
 [BuRR](https://github.com/lorenzhs/BuRR) (bumped ribbon retrieval), but with CMake support and a **non**-header-only library to reduce compile times.
 
 Due to this being a static library, only a small selection of configurations is available.
-You can find these in the [source file](/SimpleRibbon.cpp).
+You can find these in the [source file](/src/SimpleRibbon.cpp).
 
 ### Library usage
 
