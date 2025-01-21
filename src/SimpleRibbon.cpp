@@ -128,3 +128,4 @@ template class SimpleRibbon<12, 64, uint16_t>;
 template class SimpleRibbon<1, 128>;
 
 template class SimpleRibbon<32, 64, uint32_t>;
+template class SimpleRibbon<48, 64, uint64_t>;

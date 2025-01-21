@@ -12,6 +12,7 @@ class SimpleRibbon {
         static_assert(coeff_bits == 32 || coeff_bits == 64 || (bits == 1 && coeff_bits == 128), STATIC_LIBRARY_MESSAGE);
         static_assert((bits <= 8 && std::is_same<result_t, uint8_t>::value)
                         || (bits == 32 && coeff_bits == 64 && std::is_same<result_t, uint32_t>::value)
+                        || (bits == 48 && coeff_bits == 64 && std::is_same<result_t, uint64_t>::value)
                         || (bits > 8 && bits <= 12 && std::is_same<result_t, uint16_t>::value), STATIC_LIBRARY_MESSAGE);
     private:
         void *ribbon;
