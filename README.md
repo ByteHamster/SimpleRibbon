@@ -9,19 +9,26 @@ You can find these in the [source file](/src/SimpleRibbon.cpp).
 
 Clone this repository (with submodules) and add the following to your `CMakeLists.txt`.
 
-```
+```cmake
 add_subdirectory(path/to/SimpleRibbon)
 target_link_libraries(YourTarget PRIVATE SimpleRibbon)
 ```
 
 You can then use it as follows:
 
-```
+```cpp
 #include <SimpleRibbon.h>
 
-std::vector<std::pair<uint64_t, uint8_t>> inputData = ...;
-SimpleRibbon<1> ribbon(inputData); // 1-bit BuRR
-std::cout << ribbon1->retrieve(hashedKey) << std::endl;
+std::vector<std::pair<uint64_t, uint8_t>> inputData = {
+    {12345, 1},
+    {67890, 0},
+    {54321, 1}
+};
+
+SimpleRibbon<1> ribbon(inputData);  // 1-bit BuRR
+uint64_t hashedKey = 12345;
+uint8_t result = ribbon.retrieve(hashedKey);
+std::cout << "The result for " << hashedKey << " is " << unsigned(result) << std::endl;
 ```
 
 ### Citation
